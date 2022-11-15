@@ -13,28 +13,28 @@ pipeline{
 		stage('gitclone') {
 
 		      steps {
-		         git 'https://github.com/theitern/DevopsBasics.git'
+		         git 'https://github.com/ramso50/DevopsBasics.git'
 		      }
 		}
 		
 		stage('Build') {
 			steps {
 			
-			   sh 'docker build -t akinaregbesola/class_app:${BUILD_NUMBER} .'
+			   sh 'docker build -t ramso50/class_app:${BUILD_NUMBER} .'
 			}
 		}
 		
 		stage('Login') {
 		
 			steps {
-			   sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username akinaregbesola --password-stdin'    
+			   sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username ramso50 --password-stdin'    
 			}
 		}
 
 		stage('Push') {
 			
 			steps {
-			   sh 'docker push akinaregbesola/class_app:${BUILD_NUMBER}'
+			   sh 'docker push ramso50/class_app:${BUILD_NUMBER}'
 			}
 		}
 		}
